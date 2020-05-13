@@ -75,6 +75,7 @@ namespace ITHS_Labb1_FelixGramell
 
             app.UseSession();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
