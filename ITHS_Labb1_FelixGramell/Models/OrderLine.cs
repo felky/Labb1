@@ -15,8 +15,6 @@ namespace ITHS_Labb1_FelixGramell.Models
         [Required]
         public int ProductId { get; set; }
         [Required]
-        public int Amount { get; set; }
-        [Required]
-        public float Total { get; set; }
+        public double Total { get; set; }
     }
 }

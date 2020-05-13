@@ -160,3 +160,4 @@ C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\ob
 C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\bin\Debug\netcoreapp3.1\libman.json
 C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Cart.cshtml.g.cs
 C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Checkout.cshtml.g.cs
+C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Payment.cshtml.g.cs
