@@ -1,37 +1,72 @@
-﻿@model ITHS_Labb1_FelixGramell.ViewModels.CartVM
+﻿@model ITHS_Labb1_FelixGramell.ViewModels.PaymentVM
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Checkout";
 }
 
-<h1><p class="fa fa-shopping-cart"></p> Shopping cart</h1>
+<h1><p class="fa fa-shopping-basket"></p> Order review </h1>
 
-@if (Model != null)
-{
-    <table class="table">
-        <thead class="thead-dark">
-        <th scope="col"></th>
-        <th scope="col">Product</th>
-        <th scope="col">Price</th>
-        <th scope="col"></th>
-        </thead>
-
-        <tbody>
-            @for (int i = 0; i < Model.Cart.Products.Count(); i++)
+<div class="d-flex flex-row">
+    <div class="p-4">
+        <ul>
+            @foreach (Product p in Model.Cart.Products)
             {
-                {
-
-                    <tr>
-                        <td><img src="@Model.Cart.Products[i].Img_Url" style="height: 100px; width: 120px" /></td>
-                        <td>@Model.Cart.Products[i].Name.</td>
-                        <td>$@Model.Cart.Products[i].Price</td>
-                        <td><a style="color: red;" asp-controller="Checkout" asp-action="RemoveFromCart" asp-route-index="@i">[X]</a></td>
-                    </tr>
-                }
+                <li>@p.Name - $@p.Price </li>
             }
-        </tbody>
+        </ul>
+        @{ double totalCost = 0; }
+        @for (int i = 0; i < Model.Cart.Products.Count(); i++)
+        {
+            totalCost += Model.Cart.Products[i].Price;
+        }
+        <p>Total Cost: @totalCost </p>
+        </div>
 
-    </table>
+    <div class="p-2">
+        <form method="post" asp-controller="Checkout" asp-action="Payment">
+            <div class="form-group">
+                <label for="Email">Email adress</label>
+                <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email" asp-for="Email">
+            </div>
+            <div class="form-group">
+                <label for="FirstName">First Name</label>
+                <input type="text" class="form-control" id="FirstName" placeholder="First Name" asp-for="FirstName">
+            </div>
+            <div class="form-group">
+                <label for="LastName">Last Name</label>
+                <input type="text" class="form-control" id="LastName" placeholder="Last Name" asp-for="LastName">
+            </div>
+            <div class="form-group">
+                <label for="Adress">Adress</label>
+                <input type="text" class="form-control" id="Adress" placeholder="Adress" asp-for="DeliveryAdress">
+            </div>
 
-    <a class="btn btn-success" asp-controller="Checkout" asp-action="Payment">Proceed to checkout!</a>
-}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="CardNumber">Kortnummer</label>
+                    <input type="text" class="form-control"  asp-for="CardNumber">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="CVC">CVC</label>
+                    <input type="text" class="form-control" asp-for="CVC">
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="Expiration">Month</label>
+                    <input type="text" class="form-control"  asp-for="ExpirationMonth">
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="Expiration2">Year</label>
+                    <input type="text" class="form-control"  asp-for="ExpirationYear">
+                </div>
+            </div>
+
+            <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+ </div>
+
