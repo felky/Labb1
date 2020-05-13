@@ -4,7 +4,15 @@
     ViewData["Title"] = "ViewProduct";
 }
 
-<h1>ViewProduct</h1>
-
-<p> @Model.product.Name </p>
-
+    <div class="jumbotron">
+        <h1 class="display-4">@Model.product.Name</h1>
+        <p class="lead">@Model.product.Price</p>
+        <hr class="my-4">
+        <img src="@Model.product.Img_Url" />
+        <ul>
+            <li><p><b>Switches: </b> @Model.productInformation.Switches</p></li>
+            <li><p><b>Layout: </b>@Model.productInformation.Layout</p></li>
+            <li><p><b>Language: </b>@Model.productInformation.Language</p></li>
+            <li><p><b>Size: </b> @Model.productInformation.Size %</p></li>
+        </ul>
+    </div>

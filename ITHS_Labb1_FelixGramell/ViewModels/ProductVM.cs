@@ -9,5 +9,6 @@ namespace ITHS_Labb1_FelixGramell.ViewModels
     public class ProductVM
     {
         public Product product { get; set; }
+        public ProductInformation productInformation { get; set; }
     }
 }
