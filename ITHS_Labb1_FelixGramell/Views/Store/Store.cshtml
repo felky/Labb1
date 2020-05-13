@@ -1,0 +1,15 @@
+﻿@model ITHS_Labb1_FelixGramell.ViewModels.StoreVM
+
+@{
+    ViewData["Title"] = "Store";
+}
+
+<h1>Felkans Tangentbordsbutik!</h1>
+
+<div>
+    <ul>
+        @foreach(Product p in Model.products){
+            <li>@p.Name</li>
+        }
+    </ul>
+</div>
