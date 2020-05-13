@@ -4,14 +4,16 @@ using ITHS_Labb1_FelixGramell.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITHS_Labb1_FelixGramell.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200513164646_Seed DB")]
+    partial class SeedDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,56 +110,6 @@ namespace ITHS_Labb1_FelixGramell.Data.Migrations
                             Img_Url = "https://preview.redd.it/z5p7t8t2fst41.png?width=1024&auto=webp&s=14090fd249c2bf94fd2a2d5e3c0701f13f635fe6",
                             Name = "Small grey and beige keyboard",
                             Price = 200.0
-                        });
-                });
-
-            modelBuilder.Entity("ITHS_Labb1_FelixGramell.Models.ProductInformation", b =>
-                {
-                    b.Property<int>("Keyboard_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Language")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Layout")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Switches")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Keyboard_Id");
-
-                    b.ToTable("ProductInformation");
-
-                    b.HasData(
-                        new
-                        {
-                            Keyboard_Id = 1,
-                            Language = "US",
-                            Layout = "ANSI",
-                            Size = 60,
-                            Switches = "MX Blues"
-                        },
-                        new
-                        {
-                            Keyboard_Id = 2,
-                            Language = "US",
-                            Layout = "ANSI",
-                            Size = 60,
-                            Switches = "Gateron Black"
-                        },
-                        new
-                        {
-                            Keyboard_Id = 3,
-                            Language = "US",
-                            Layout = "ANSI",
-                            Size = 40,
-                            Switches = "Holy Pandas"
                         });
                 });
 

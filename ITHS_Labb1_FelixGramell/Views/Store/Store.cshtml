@@ -6,10 +6,16 @@
 
 <h1>Felkans Tangentbordsbutik!</h1>
 
-<div>
-    <ul>
-        @foreach(Product p in Model.products){
-            <li>@p.Name</li>
-        }
-    </ul>
+<div class="card-deck">
+    @foreach (Product p in Model.products)
+    {
+    <div class="card">
+        <img class="card-img-top rounded" src="@p.Img_Url" alt="Product Image">
+        <div class="card-body">
+            <h5 class="card-title">@p.Name</h5>
+            <p class="card-text">$@p.Price</p>
+            <a class="btn btn-info"  asp-controller="Store" asp-action="ViewProduct" asp-route-id="@p.Id"> View more info </a>
+        </div>
+    </div>
+    }
 </div>
