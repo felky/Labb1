@@ -4,14 +4,16 @@ using ITHS_Labb1_FelixGramell.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITHS_Labb1_FelixGramell.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200513155558_Init Migration")]
+    partial class InitMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,29 +88,6 @@ namespace ITHS_Labb1_FelixGramell.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Product");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Img_Url = "https://preview.redd.it/9d69elb5ext41.png?width=1024&auto=webp&s=6c0a8defaaed5d5707e889b10cc1f5e527706b46",
-                            Name = "Purple mechanical keyboard",
-                            Price = 149.99000000000001
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Img_Url = "https://preview.redd.it/cw9ax8o8fws41.png?width=1024&auto=webp&s=c78e19c619bfc72933084710a656f39b2f347eea",
-                            Name = "Galaxy mechanical keyboard",
-                            Price = 249.99000000000001
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Img_Url = "https://preview.redd.it/z5p7t8t2fst41.png?width=1024&auto=webp&s=14090fd249c2bf94fd2a2d5e3c0701f13f635fe6",
-                            Name = "Small grey and beige keyboard",
-                            Price = 200.0
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

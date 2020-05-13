@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Primitives;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace ITHS_Labb1_FelixGramell.Models
 {
-    public class Orders
+    public class OrderLine
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public int CustomerId { get; set; }
+        public int OrderId { get; set; }
         [Required]
-        public DateTime OrderDate { get; set; }
+        public int ProductId { get; set; }
         [Required]
-        public string OrderAdress { get; set; }
+        public int Amount { get; set; }
+        [Required]
+        public float Total { get; set; }
     }
 }

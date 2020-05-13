@@ -8,8 +8,15 @@
 
 <div>
     <ul>
-        @foreach(Product p in Model.products){
-            <li>@p.Name</li>
-        }
+            @foreach (Product p in Model.products)
+            {
+                <li>
+                    <div>
+                        <h4>@p.Name</h4>
+                        <p>@p.Price</p>
+                        <img src="@p.Img_Url" alt="Product image"/>
+                    </div>
+                </li>
+            }
     </ul>
 </div>
