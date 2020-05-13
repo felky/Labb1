@@ -1,0 +1,42 @@
+﻿@model ITHS_Labb1_FelixGramell.ViewModels.CartVM
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1><p class="fa fa-shopping-cart"></p> Shopping cart</h1>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead class="thead-dark">
+            <th scope="col"></th>
+            <th scope="col">Product</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+        </thead>
+
+            <tbody>
+                @for (int i = 0; i < Model.Cart.Products.Count(); i++)
+                {
+                    {
+
+                        <tr>
+                            <td><img src="@Model.Cart.Products[i].Img_Url" style="height: 100px; width: 120px" /></td>
+                            <td>@Model.Cart.Products[i].Name.</td>
+                            <td>$@Model.Cart.Products[i].Price</td>
+                            <td><a style="color: red;" asp-controller="Checkout" asp-action="RemoveFromCart" asp-route-index="@i">[X]</a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+
+    </table>
+
+    <a class="btn btn-success" asp-controller="Checkout" asp-action="Payment">Proceed to checkout!</a>
+}
+else
+{
+    <h5>Nothing added to cart yet!</h5>
+}
+

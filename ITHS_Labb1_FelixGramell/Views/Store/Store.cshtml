@@ -4,18 +4,24 @@
     ViewData["Title"] = "Store";
 }
 
-<h1>Felkans Tangentbordsbutik!</h1>
+<h1>All keyboards</h1>
 
-<div class="card-deck">
-    @foreach (Product p in Model.products)
-    {
-    <div class="card">
-        <img class="card-img-top rounded" src="@p.Img_Url" alt="Product Image">
-        <div class="card-body">
-            <h5 class="card-title">@p.Name</h5>
-            <p class="card-text">$@p.Price</p>
-            <a class="btn btn-info"  asp-controller="Store" asp-action="ViewProduct" asp-route-id="@p.Id"> View more info </a>
-        </div>
-    </div>
-    }
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th data-field="name" data-sortable="true">Keyboard name</th>
+            <th data-field="price" data-sortable="true">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Product p in Model.products)
+        {
+            <tr id="row">
+                <td><img src="@p.Img_Url" style="height: 10vh; width: 14vh" /></td>
+                <td><h5 class="text-primary"><a asp-controller="Store" asp-action="ViewProduct" asp-route-id="@p.Id">@p.Name</a></h5></td>
+                <td>$@p.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>

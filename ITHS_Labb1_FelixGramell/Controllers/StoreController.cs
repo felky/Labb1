@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 using ITHS_Labb1_FelixGramell.Data;
 using ITHS_Labb1_FelixGramell.Models;
 using ITHS_Labb1_FelixGramell.ViewModels;
+using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using ITHS_Labb1_FelixGramell.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace ITHS_Labb1_FelixGramell.Controllers
 {
@@ -59,6 +64,36 @@ namespace ITHS_Labb1_FelixGramell.Controllers
             };
 
             return View(vm);
+        }
+
+        [HttpPost("{id}")]
+        [Route("[controller]/[action]")]
+        public IActionResult AddToCart(int id)
+        {
+            var cart = new ShoppingCart();
+            var prd = new Product();
+            var prdList = new List<Product>();
+
+            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            {
+                prd = ctx.Product.SingleOrDefault(x => x.Id == id);
+            }
+
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("cart"))) {
+                    cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("cart");
+                    cart.Products.Add(prd);
+                    HttpContext.Session.SetObjectAsJson("cart", cart);
+                    System.Diagnostics.Debug.WriteLine("CART EXISTING, ADDED TO CART: " + cart.Products.ToString());
+            }
+            else {
+                    prdList.Add(prd);
+                    cart.Products = prdList;
+                    HttpContext.Session.SetObjectAsJson("cart", cart);
+                    System.Diagnostics.Debug.WriteLine("CART EMPTY, NEW CART CREATED: " + cart.Products.ToString());
+            }
+
+            return RedirectToAction("Cart", "Checkout");
+
         }
     }
 }

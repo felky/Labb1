@@ -153,7 +153,10 @@ C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\bi
 C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\Razor\Views\Store\Store.cshtml.g.cs
 C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\Razor\Views\Store\ViewProduct.cshtml.g.cs
 C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\ITHS_Labb1_FelixGramell.csproj.CoreCompileInputs.cache
 C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\ITHS_Labb1_FelixGramell.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\ITHS_Labb1_FelixGramell.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\Razor\Views\Store\ViewProduct.cshtml.g.cs
+C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Cart.cshtml.g.cs
+C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Checkout.cshtml.g.cs
