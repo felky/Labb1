@@ -29,7 +29,7 @@ namespace ITHS_Labb1_FelixGramell.Controllers
             List<Product> products;
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("http://localhost:52403/api/product/getallproducts/"))
+                using (var response = await httpClient.GetAsync("http://localhost:52403/productapi/product/getallproducts/"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
@@ -48,20 +48,18 @@ namespace ITHS_Labb1_FelixGramell.Controllers
 
         [HttpGet("{id}")]
         [Route("[controller]/[action]")]
-        public async Task<IActionResult> ViewProduct(int id)
+        public async Task<IActionResult> ViewProduct(ProductVM vm, int id)
         {
-            ProductVM productVM;
-
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"http://localhost:52403/api/product/GetProductVM/{id}"))
+                using (var response = await httpClient.GetAsync($"http://localhost:52403/productapi/product/getproductvm/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    productVM = JsonConvert.DeserializeObject<ProductVM>(apiResponse);
+                    vm = JsonConvert.DeserializeObject<ProductVM>(apiResponse);
                 }
             }
 
-            return View(productVM);
+            return View(vm);
         }
 
         [HttpPost("{id}")]
@@ -74,7 +72,7 @@ namespace ITHS_Labb1_FelixGramell.Controllers
 
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"http://localhost:52403/api/product/getspecificproduct/{id}"))
+                using (var response = await httpClient.GetAsync($"http://localhost:52403/productapi/product/GetById/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     prd = JsonConvert.DeserializeObject<Product>(apiResponse);

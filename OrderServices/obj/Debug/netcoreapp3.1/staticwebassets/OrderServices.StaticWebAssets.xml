@@ -1,1 +1,4 @@
-﻿<StaticWebAssets Version="1.0" />
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/Identity" Path="C:\Users\GAMERPC\.nuget\packages\microsoft.aspnetcore.identity.ui\3.1.4\staticwebassets\V4\" />
+  <ContentRoot BasePath="_content/ITHS_Labb1_FelixGramell" Path="C:\Users\GAMERPC\source\repos\ITHS_Labb1_FelixGramell\ITHS_Labb1_FelixGramell\wwwroot\" />
+</StaticWebAssets>

@@ -17,13 +17,13 @@ namespace ProductServices.Services
             return _repo.GetAllProducts();
         }
 
-        public Product GetProductById(int id)
+        public Product GetById(int id)
         {
             return _repo.GetById(id);
 
         }
 
-        public ProductInformation GetInformationById(int id)
+        public ProductInformation GetInfoById(int id)
         {
             return _repo.GetInfoById(id);
         }

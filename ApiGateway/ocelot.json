@@ -1,7 +1,7 @@
 ﻿{
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/product/getproducts",
+      "DownstreamPathTemplate": "/productapi/product/getproducts",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,11 +9,11 @@
           "Port": "52403"
         }
       ],
-      "UpstreamPathTemplate": "/getproducts",
+      "UpstreamPathTemplate": "/productapi/product/getproducts",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/product/getspecificproduct/{id}",
+      "DownstreamPathTemplate": "/productapi/product/getspecificproduct/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -21,11 +21,11 @@
           "Port": "52403"
         }
       ],
-      "UpstreamPathTemplate": "/getspecificproduct/{id}",
+      "UpstreamPathTemplate": "/productapi/product/getspecificproduct/{id}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/product/getinfospecificproduct/{id}",
+      "DownstreamPathTemplate": "/productapi/product/getinfospecificproduct/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -35,6 +35,30 @@
       ],
       "UpstreamPathTemplate": "/getinfospecificproduct/{id}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/productapi/product/getproductvm/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "52403"
+        }
+      ],
+      "UpstreamPathTemplate": "/productapi/product/getproductvm/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/orderapi/order/addorder",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "53577"
+        }
+      ],
+      "UpstreamPathTemplate": "/orderapi/order/addorder",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ]
 }
