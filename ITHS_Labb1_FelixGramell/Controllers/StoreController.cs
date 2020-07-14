@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using ITHS_Labb1_FelixGramell.Services;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Http;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace ITHS_Labb1_FelixGramell.Controllers
 {
@@ -21,75 +24,73 @@ namespace ITHS_Labb1_FelixGramell.Controllers
     {
         [HttpGet]
         [Route("[controller]")]
-        public IActionResult Store()
+        public async Task<IActionResult> Store()
         {
-            List<Product> products = new List<Product>();
-
-            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            List<Product> products;
+            using (var httpClient = new HttpClient())
             {
-                try
+                using (var response = await httpClient.GetAsync("http://localhost:52403/api/product/getallproducts/"))
                 {
-                    products = ctx.Product.ToList();
-                }
-                catch (Exception e)
-                {
-                    return View("Error");
-                }
-            };
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
 
-            StoreVM vm = new StoreVM();
-            vm.products = products;
+                }
+            }
 
-            return View(vm);
+            StoreVM vm = new StoreVM(products);
+            if( vm != null)
+            {
+                return View(vm);
+            }
+
+            return RedirectToAction("Home", "Index"); 
         }
 
         [HttpGet("{id}")]
         [Route("[controller]/[action]")]
-        public IActionResult ViewProduct(int id)
+        public async Task<IActionResult> ViewProduct(int id)
         {
-            ProductVM vm = new ProductVM();
+            ProductVM productVM;
 
-            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            using (var httpClient = new HttpClient())
             {
-                try
+                using (var response = await httpClient.GetAsync($"http://localhost:52403/api/product/GetProductVM/{id}"))
                 {
-                    Product prd = ctx.Product.Single(x => x.Id == id);
-                    ProductInformation prdInf = ctx.ProductInformation.Single(x => x.Keyboard_Id == id);
-                    vm.productInformation = prdInf;
-                    vm.product = prd;
-                } catch (Exception e)
-                {
-                    return View("Error"); 
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    productVM = JsonConvert.DeserializeObject<ProductVM>(apiResponse);
                 }
-            };
+            }
 
-            return View(vm);
+            return View(productVM);
         }
 
         [HttpPost("{id}")]
         [Route("[controller]/[action]")]
-        public IActionResult AddToCart(int id)
+        public async Task<IActionResult> AddToCart(int id)
         {
             var cart = new ShoppingCart();
             var prd = new Product();
             var prdList = new List<Product>();
 
-            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            using (var httpClient = new HttpClient())
             {
-                prd = ctx.Product.SingleOrDefault(x => x.Id == id);
+                using (var response = await httpClient.GetAsync($"http://localhost:52403/api/product/getspecificproduct/{id}"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    prd = JsonConvert.DeserializeObject<Product>(apiResponse);
+
+                }
             }
 
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("cart"))) {
                     cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("cart");
                     cart.Products.Add(prd);
                     HttpContext.Session.SetObjectAsJson("cart", cart);
-                    System.Diagnostics.Debug.WriteLine("CART EXISTING, ADDED TO CART: " + cart.Products.ToString());
             }
             else {
                     prdList.Add(prd);
                     cart.Products = prdList;
                     HttpContext.Session.SetObjectAsJson("cart", cart);
-                    System.Diagnostics.Debug.WriteLine("CART EMPTY, NEW CART CREATED: " + cart.Products.ToString());
             }
 
             return RedirectToAction("Cart", "Checkout");

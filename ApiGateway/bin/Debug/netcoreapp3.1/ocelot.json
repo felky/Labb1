@@ -1,0 +1,40 @@
+﻿{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/product/getproducts",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "52403"
+        }
+      ],
+      "UpstreamPathTemplate": "/getproducts",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/product/getspecificproduct/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "52403"
+        }
+      ],
+      "UpstreamPathTemplate": "/getspecificproduct/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/product/getinfospecificproduct/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "52403"
+        }
+      ],
+      "UpstreamPathTemplate": "/getinfospecificproduct/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}
