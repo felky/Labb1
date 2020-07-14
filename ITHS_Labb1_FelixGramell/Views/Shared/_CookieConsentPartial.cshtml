@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !consentFeature?.CanTrack ?? false;
+    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+@if (showBanner)
+{
+    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
+        <p>
+            <h4>Kakor (”cookies”)</h4>
+            <small>
+                För att få den här webbplatsen att fungera ordentligt skickar vi ibland små filer till din dator.
+                Dessa filer kallas kakor eller ”cookies”. De flesta större webbplatser gör på samma sätt.
+            </small>
+            <h4>Vad är kakor?</h4>
+            <small>
+                Kakorna är små textfiler som sparas på din dator, telefon eller surfplatta när du besöker webbplatsen. Kakorna hjälper webbplatsen att komma ihåg dina inställningar (t.ex. användarnamn, språk, textstorlek och andra förhandsval) under en viss tid.
+                Tanken är att du inte ska behöva göra om inställningarna varje gång du går in på webbplatsen eller bläddrar mellan olika sidor.
+            </small>
+            <h4>Hur använder vi kakorna?</h4>
+            <small>På flera av våra sidor används kakor för att komma ihåg</small>
+            <ul>
+                <li>Din kundvagn mellan under din session</li>
+                <li>Din inloggnings-status</li>
+            </ul>
+            <small>Kakorna är inte helt nödvändiga för att webbplatsen ska fungera, men de gör det lättare för dig att söka information. Du kan ta bort eller blockera kakorna, men i så fall får du vara beredd på att webbplatsen inte fungerar optimalt.</small>
+            <small>Kakorna används inte för att identifiera dig som person och de insamlade uppgifterna står helt under vår kontroll. Kakorna används bara i de syften som nämns här.</small>
+            <h4>Hur du kan kontrollera kakorna?</h4>
+            <small>Du kan kontrollera och radera kakor precis som du vill. Läs mer på aboutcookies.org. Du kan ta bort alla kakor som finns på din dator och du kan ställa in webbläsaren så att den inte tar emot några kakor. I så fall måste du eventuellt göra om vissa inställningar varje gång du går in på en webbplats och vissa tjänster och funktioner kanske inte fungerar..</small>
+            
+            <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
+                <span aria-hidden="true">Accept</span>
+            </button>
+
+            <a asp-page="/Privacy">Läs mer...</a>.
+
+        </p>
+    </div>
+
+
+    <script>
+        (function () {
+            var button = document.querySelector("#cookieConsent button[data-cookie-string]");
+            button.addEventListener("click", function (event) {
+                document.cookie = button.dataset.cookieString;
+            }, false);
+        })();
+    </script>
+}

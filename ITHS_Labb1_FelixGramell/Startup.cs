@@ -42,6 +42,11 @@ namespace ITHS_Labb1_FelixGramell
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddDistributedMemoryCache();
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromDays(1);
@@ -69,6 +74,8 @@ namespace ITHS_Labb1_FelixGramell
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCookiePolicy();
 
             app.UseAuthentication();
             app.UseAuthorization();
