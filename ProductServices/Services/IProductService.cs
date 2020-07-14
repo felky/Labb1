@@ -9,8 +9,8 @@ namespace ProductServices.Services
     public interface IProductService
     {
         List<Product> GetAllProducts();
-        Product GetProductById(int id);
-        ProductInformation GetInformationById(int id);
+        Product GetById(int id);
+        ProductInformation GetInfoById(int id);
         ProductVM GetProductVM(int id); 
     }
 }

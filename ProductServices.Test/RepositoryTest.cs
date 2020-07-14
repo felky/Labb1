@@ -8,7 +8,7 @@ using ProductServices.Repositories;
 namespace ProductServices.Test
 {
     public class RepositoryTest
-    {
+    { 
         [Fact]
         public void GetProducts_Returns_Product()
         {
@@ -34,15 +34,6 @@ namespace ProductServices.Test
             var productInfo = productInfoRepo.GetInfoById(1);
 
             Assert.IsType<ProductInformation>(productInfo);
-        }
-
-        [Fact]
-        public void GetProductVMbyId_Returns_ProductVM()
-        {
-            var productRepo = new ProductRepo();
-            var productVM = productRepo.GetProductVM(1);
-
-            Assert.IsType<ProductVM>(productVM);
         }
 
     }

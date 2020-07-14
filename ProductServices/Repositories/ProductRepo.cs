@@ -53,16 +53,13 @@ namespace ProductServices.Repositories
 
         public ProductVM GetProductVM(int id)
         {
-            Product product;
-            ProductInformation prodInfo;
+            ProductVM productVM = new ProductVM();
 
             using (ProductServiceContext ctx = new ProductServiceContext())
             {
-                product = ctx.Product.FirstOrDefault(x => x.Id == id);
-                prodInfo = ctx.ProductInformation.FirstOrDefault(y => y.Keyboard_Id == id);
+                productVM.product = ctx.Product.FirstOrDefault(x => x.Id == id);
+                productVM.productInformation = ctx.ProductInformation.FirstOrDefault(x => x.Keyboard_Id == id);
             };
-
-            ProductVM productVM = new ProductVM(product, prodInfo);
 
             return productVM;
         }

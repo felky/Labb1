@@ -10,6 +10,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ITHS_Labb1_FelixGramell.Controllers
 {
@@ -58,43 +62,28 @@ namespace ITHS_Labb1_FelixGramell.Controllers
         }
 
 
+        /* Att Göra: 
+         *  - Ta datan från Shopping Carten och VM och parsa den till JSON 
+         *  - POST:a sedan den JSON datan till Apin. 
+         *  - Parsa JSON och lägg i DB
+         *  - Poggers
+         */
+
         [HttpPost]
         [Route("[controller]/[action]")]
-        public IActionResult Payment(PaymentVM pvm)
+        public async Task<IActionResult> Payment(PaymentVM pvm)
         {
+
             if (!ModelState.IsValid)
             {
                 ShoppingCart cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("cart");
+                pvm.Cart = cart;
+                var payload = JsonConvert.SerializeObject(pvm);
 
-                System.Diagnostics.Debug.WriteLine("Model state valid, keep going.");
-                
-                using (ApplicationDbContext ctx = new ApplicationDbContext())
+                using (var httpClient = new HttpClient())
                 {
-                    Orders order = new Orders()
-                    {
-                        OrderAdress = pvm.DeliveryAdress,
-                        OrderDate = DateTime.Now,
-                        FirstName = pvm.FirstName,
-                        LastName = pvm.LastName,
-                        Email = pvm.Email
-                    };
-
-                    ctx.Orders.Add(order);
-                    ctx.SaveChanges();
-
-                    foreach (Product p in cart.Products)
-                    {
-                        ctx.OrderLines.Add( new OrderLine()
-                        {
-                            ProductId = p.Id,
-                            OrderId = order.Id,
-                            Total = p.Price
-                        });
-                    }
-
+                    await httpClient.PostAsync("http://localhost:53577/orderapi/order/addorder/", new StringContent(payload, Encoding.UTF8, "application/json"));
                     HttpContext.Session.Clear();
-
-                    ctx.SaveChanges();
                 }
             }
 

@@ -11,34 +11,34 @@ using ProductServices.Services;
 
 namespace ProductServices.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("productapi/[controller]/[action]")]
     [ApiController]
     public class ProductController : Controller
     {
-        ProductRepo pr = new ProductRepo(); 
+        ProductService ps = new ProductService(); 
 
         [HttpGet]
         public IEnumerable<Product> GetAllProducts()
         {
-            return pr.GetAllProducts();
+            return ps.GetAllProducts();
         }
 
         [HttpGet("{id}")]
-        public Product GetSpecificProduct(int id)
+        public Product GetById(int id)
         {
-            return pr.GetById(id);
+            return ps.GetById(id);
         }
 
         [HttpGet("{id}")]
         public ProductInformation GetInfoSpecificProduct(int id)
         {
-            return pr.GetInfoById(id);
+            return ps.GetInfoById(id);
         }
 
         [HttpGet("{id}")]
         public ProductVM GetProductVM(int id)
         {
-            return pr.GetProductVM(id);
+            return ps.GetProductVM(id);
         }
     }
 }
